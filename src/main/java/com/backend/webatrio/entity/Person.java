@@ -1,5 +1,6 @@
 package com.backend.webatrio.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,5 +23,6 @@ public class Person {
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Job> jobs = new ArrayList<>();
 }

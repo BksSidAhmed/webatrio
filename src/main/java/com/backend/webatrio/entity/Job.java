@@ -1,5 +1,6 @@
 package com.backend.webatrio.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Job {
 
     @ManyToOne
     @JoinColumn(name = "person_id")
+    @JsonBackReference
     private Person person;
 
 }

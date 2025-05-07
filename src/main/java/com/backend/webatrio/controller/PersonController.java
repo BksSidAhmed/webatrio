@@ -1,6 +1,7 @@
 package com.backend.webatrio.controller;
 
 import com.backend.webatrio.dto.PersonDTO;
+import com.backend.webatrio.dto.PersonWithJobDTO;
 import com.backend.webatrio.entity.Person;
 import com.backend.webatrio.service.PersonService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,10 +10,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/persons")
@@ -25,7 +25,23 @@ public class PersonController {
     @PostMapping
     @Operation(summary = "Créer une personne (âge < 150 ans)")
     @ApiResponse(responseCode = "200", description = "Personne créée avec succès")
-    public ResponseEntity<Person> createPerson(@RequestBody  @Valid PersonDTO personDTO) {
+    public ResponseEntity<Person> createPerson(@RequestBody @Valid PersonDTO personDTO) {
         return ResponseEntity.ok(personService.createPerson(personDTO));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<PersonWithJobDTO>> getAllPersonsWithCurrentJobs() {
+        return ResponseEntity.ok(personService.getAllPersonsWithCurrentJobs());
+    }
+
+    /**
+     * Endpoint pour récupérer toutes les personnes ayant travaillé pour une entreprise donnée.
+     *
+     * @param company Le nom de l'entreprise.
+     * @return Une liste de personnes ayant travaillé pour l'entreprise spécifiée.
+     */
+    @GetMapping("/company/{company}")
+    public List<Person> getPeopleByCompany(@PathVariable String company) {
+        return personService.getPeopleByCompany(company);
     }
 }
