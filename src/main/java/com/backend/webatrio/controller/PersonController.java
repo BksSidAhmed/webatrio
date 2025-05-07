@@ -30,17 +30,15 @@ public class PersonController {
     }
 
     @GetMapping("/all")
+    @Operation(summary = "Récupérer toutes les personnes avec leur emploi.")
+    @ApiResponse(responseCode = "200", description = "Tout a été récupéré avec succès.")
     public ResponseEntity<List<PersonWithJobDTO>> getAllPersonsWithCurrentJobs() {
         return ResponseEntity.ok(personService.getAllPersonsWithCurrentJobs());
     }
 
-    /**
-     * Endpoint pour récupérer toutes les personnes ayant travaillé pour une entreprise donnée.
-     *
-     * @param company Le nom de l'entreprise.
-     * @return Une liste de personnes ayant travaillé pour l'entreprise spécifiée.
-     */
     @GetMapping("/company/{company}")
+    @Operation(summary = "Récupérer toutes les personnes ayant travaillé pour une entreprise donnée")
+    @ApiResponse(responseCode = "200", description = "Tout a été récupéré avec succès.")
     public List<Person> getPeopleByCompany(@PathVariable String company) {
         return personService.getPeopleByCompany(company);
     }

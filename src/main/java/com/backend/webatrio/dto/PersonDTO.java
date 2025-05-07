@@ -18,7 +18,6 @@ public class PersonDTO {
     @Parameter(description = "Nom de la personne")
     private String lastName;
 
-    @PastOrPresent(message = "La date de naissance doit être dans le passé")
     @Parameter(description = "Date de naissance de la personne")
     private LocalDate birthDate;
 }

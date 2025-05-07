@@ -9,7 +9,12 @@ import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    // Utilisation de @Query pour rechercher les personnes ayant travaillé pour une entreprise donnée
+    /**
+     * Utilisation de @Query pour rechercher les personnes ayant travaillé pour une entreprise donnée
+     *
+     * @param company company
+     * @return List<Person>
+     */
     @Query("SELECT p FROM Person p JOIN p.jobs j WHERE j.company = :company")
     List<Person> findPeopleByCompany(@Param("company") String company);
 }

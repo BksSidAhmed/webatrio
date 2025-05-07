@@ -46,4 +46,16 @@ public class JobService {
         return jobRepository.save(job);
     }
 
+//    /**
+//     * Récupère tous les emplois d'une personne entre deux dates.
+//     *
+//     * @param personId   L'ID de la personne.
+//     * @param startDate  La date de début de la plage.
+//     * @param endDate    La date de fin de la plage.
+//     * @return La liste des emplois de la personne dans la plage de dates spécifiée.
+//     */
+//    public List<Job> getJobsByPersonAndDateRange(Long personId, LocalDate startDate, LocalDate endDate) {
+//        return jobRepository.findByPersonIdAndStartDateBetweenOrEndDateBetween(personId, startDate, endDate);
+//    }
+
 }

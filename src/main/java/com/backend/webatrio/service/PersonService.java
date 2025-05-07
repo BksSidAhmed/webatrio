@@ -53,7 +53,7 @@ public class PersonService {
         List<Person> people = personRepository.findAll();
 
         return people.stream()
-                .sorted((p1, p2) -> p1.getFirstName().compareTo(p2.getFirstName()))
+                .sorted((p1, p2) -> p1.getFirstName().compareToIgnoreCase(p2.getFirstName()))
                 .map(person -> {
                     PersonWithJobDTO personWithJobDTO = new PersonWithJobDTO();
                     personWithJobDTO.setFirstName(person.getFirstName());

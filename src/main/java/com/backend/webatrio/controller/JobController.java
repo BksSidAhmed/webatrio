@@ -25,4 +25,13 @@ public class JobController {
     public ResponseEntity<Job> addJobToPerson(@PathVariable Long personId, @RequestBody @Valid JobDTO jobDTO) {
         return ResponseEntity.ok(jobService.addJobToPerson(personId, jobDTO));
     }
+
+
+//    @GetMapping("/person/{personId}")
+//    public List<Job> getJobsByPersonAndDateRange(
+//            @PathVariable Long personId,
+//            @RequestParam("startDate") LocalDate startDate,
+//            @RequestParam("endDate") LocalDate endDate) {
+//        return jobService.getJobsByPersonAndDateRange(personId, startDate, endDate);
+//    }
 }
